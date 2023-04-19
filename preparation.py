@@ -43,20 +43,20 @@ def find_similarities(text1, text2):
     return [similarity for similarity in similarities if len(similarity[0]) > 10]
 
 def preparation():
-    legit_text = "legit.txt"
-    processed_legit_text = preprocessing(legit_text)
-    plagiarized_texts = ["plagiarized.txt"]
-    processed_plagiarized_texts = []
-    for text in plagiarized_texts:
-        processed_plagiarized_texts.append(preprocessing(text))
+    suspicious_text = "legit.txt"
+    processed_suspicious_text = preprocessing(suspicious_text)
+    original_texts = ["plagiarized.txt"]
+    processed_original_texts = []
+    for text in original_texts:
+        processed_original_texts.append(preprocessing(text))
 
-    for i, processed_plagiarized_text in enumerate(processed_plagiarized_texts):
+    for i, processed_original_text in enumerate(processed_original_texts):
 
-        paragraphs = [processed_legit_text, processed_plagiarized_text]
+        paragraphs = [processed_suspicious_text, processed_original_text]
 
         # N-grams
-        unigrams = create_n_grams(processed_legit_text.split(" "), processed_plagiarized_text.split(" "), 1)
-        trigrams = create_n_grams(processed_legit_text.split(" "), processed_plagiarized_text.split(" "), 3)
+        unigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 1)
+        trigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 3)
         
 
         # Embeddings
@@ -80,7 +80,7 @@ def preparation():
             print("⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️")
         
         if pointers:
-            similarities = find_similarities(legit_text, plagiarized_texts[i])
+            similarities = find_similarities(suspicious_text, original_texts[i])
             for similarity, position in similarities:
                 print(f"Similarity: '{similarity}', Position: {position}")\
     
