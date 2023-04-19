@@ -43,12 +43,14 @@ def find_similarities(text1, text2):
     return [similarity for similarity in similarities if len(similarity[0]) > 10]
 
 def preparation():
-    suspicious_text = "legit.txt"
+    suspicious_text = "suspicious.txt"
     processed_suspicious_text = preprocessing(suspicious_text)
-    original_texts = ["plagiarized.txt"]
+    original_texts = ["original-1.txt", "original-2.txt", "original-3.txt"]
     processed_original_texts = []
     for text in original_texts:
         processed_original_texts.append(preprocessing(text))
+
+    all_similarities = []
 
     for i, processed_original_text in enumerate(processed_original_texts):
 
@@ -81,10 +83,13 @@ def preparation():
         
         if pointers:
             similarities = find_similarities(suspicious_text, original_texts[i])
+            all_similarities.append([original_texts[i], similarities])
             for similarity, position in similarities:
                 print(f"Similarity: '{similarity}', Position: {position}")\
     
-    
+    print(all_similarities)
+    # MATCH: %match, indexes, textmatch, OGFileName
+
 
 if __name__ == "__main__":
     preparation()
