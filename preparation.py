@@ -43,40 +43,46 @@ def find_similarities(text1, text2):
     return [similarity for similarity in similarities if len(similarity[0]) > 10]
 
 def preparation():
-    text1 = "legit.txt"
-    text2 = "plagiarized.txt"
-    legitpreprocessed, plagiarizedpreprocessed = preprocessing(text1, text2)
-    paragraphs = [legitpreprocessed, plagiarizedpreprocessed]
+    legit_text = "legit.txt"
+    processed_legit_text = preprocessing(legit_text)
+    plagiarized_texts = ["plagiarized.txt"]
+    processed_plagiarized_texts = []
+    for text in plagiarized_texts:
+        processed_plagiarized_texts.append(preprocessing(text))
 
-    # N-grams
-    unigrams = create_n_grams(legitpreprocessed.split(" "), plagiarizedpreprocessed.split(" "), 1)
-    trigrams = create_n_grams(legitpreprocessed.split(" "), plagiarizedpreprocessed.split(" "), 3)
-    
+    for i, processed_plagiarized_text in enumerate(processed_plagiarized_texts):
 
-    # Embeddings
-    embeddings_uni = create_embeddings(unigrams)
-    embeddings_tri = create_embeddings(trigrams)
+        paragraphs = [processed_legit_text, processed_plagiarized_text]
 
-    build_embeddings(embeddings_uni, unigrams, paragraphs)
-    build_embeddings(embeddings_tri, trigrams, paragraphs)
+        # N-grams
+        unigrams = create_n_grams(processed_legit_text.split(" "), processed_plagiarized_text.split(" "), 1)
+        trigrams = create_n_grams(processed_legit_text.split(" "), processed_plagiarized_text.split(" "), 3)
+        
 
-    
-    # Cosine similarity para unigramas
-    unigram_result = pairwise.cosine_similarity(embeddings_uni)[0,1]
-    print(unigram_result)
-    trigram_result = pairwise.cosine_similarity(embeddings_tri)[0,1]
-    print(trigram_result)
+        # Embeddings
+        embeddings_uni = create_embeddings(unigrams)
+        embeddings_tri = create_embeddings(trigrams)
 
-    pointers = False
-    if unigram_result > 0.5 and trigram_result > 0.1:
-        print("Plagiarism detected")
-        pointers = True
-        print("⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️")
-    
-    if pointers:
-        similarities = find_similarities(text1, text2)
-        for similarity, position in similarities:
-            print(f"Similarity: '{similarity}', Position: {position}")\
+        build_embeddings(embeddings_uni, unigrams, paragraphs)
+        build_embeddings(embeddings_tri, trigrams, paragraphs)
+
+        
+        # Cosine similarity para unigramas
+        unigram_result = pairwise.cosine_similarity(embeddings_uni)[0,1]
+        print(unigram_result)
+        trigram_result = pairwise.cosine_similarity(embeddings_tri)[0,1]
+        print(trigram_result)
+
+        pointers = False
+        if unigram_result > 0.5 and trigram_result > 0.1:
+            print("Plagiarism detected")
+            pointers = True
+            print("⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️")
+        
+        if pointers:
+            similarities = find_similarities(legit_text, plagiarized_texts[i])
+            for similarity, position in similarities:
+                print(f"Similarity: '{similarity}', Position: {position}")\
     
     
 
