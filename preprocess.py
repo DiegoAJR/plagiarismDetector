@@ -1,27 +1,34 @@
+# Used Packages
 from nltk.stem import WordNetLemmatizer
 import re
-# Used Packages
 import nltk
 nltk.download("wordnet")
+from gensim.parsing.preprocessing import remove_stopwords
 
-def preprocessing(file):
+'''
+Preprocessing of original text files. Preprocessing involves the removal of stopwords, 
+turning the text to lower case, removal of special characters and lemmatization.
+
+Receives the name of the text file to preprocess.
+Returns the preprocessed text as a string.
+'''
+def preprocessing(file, test = False):
     
-    print(file)
-    # Reading files
-    with open(file, "r", encoding="utf_8") as document:
-        document = document.read()
+    if not test:
+        # Reading files
+        with open(file, "r", encoding="utf_8") as document:
+            document = document.read()
+    else:
+        document = file
 
     # Remove prepositions, articles, etc
-    from gensim.parsing.preprocessing import remove_stopwords
-
     filtered_doc = remove_stopwords(document)
 
     # Turn to lowercase
     filtered_doc = filtered_doc.lower()
 
-    # Define the pattern to match
+    # Define the pattern to match everything that is a special character
     pattern = r"[^\w\s]"
-
 
     # Remove special characters
     doc_par = re.sub(pattern, "", filtered_doc)
@@ -36,8 +43,8 @@ def preprocessing(file):
 
     # Join the sentences
     doc_par = " ".join(doc_par)
-
-    # Close file
-
     
+    # Return preprocessed file as a string
     return doc_par
+
+
