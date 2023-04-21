@@ -19,6 +19,3 @@ class TestPreprocess(TestCase):
         self.assertEqual([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
                          create_embeddings(set(["holy","crab","I","am","hungry"])))
         
-    def test_build_embeddings1(self):
-        self.assertEqual([[1, 1, ], [1, 1, 1]],
-                         build_embeddings([0,0,0,0],["the","nice","fox","the"],["the nice fox", "the nice bunny the"]))

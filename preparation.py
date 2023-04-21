@@ -75,12 +75,8 @@ def preparation(processed_suspicious_text, processed_original_text):
     
     # Cosine similarity for n-grams
     unigram_result = pairwise.cosine_similarity(embeddings_uni)[0,1]
-    print("Result Unigram: " , unigram_result)
     trigram_result = pairwise.cosine_similarity(embeddings_tri)[0,1]
-    print("Result Trigram: " , trigram_result)
+    
     return unigram_result, trigram_result
 
 
-if __name__ == "__main__":
-    print(build_embeddings())
-    print(build_embeddings([0, 0, 0, 0, 0],set(["the","nice","fox"]),["the nice bunny","the nice fox"]))
