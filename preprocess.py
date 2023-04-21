@@ -1,13 +1,14 @@
+from nltk.stem import WordNetLemmatizer
+import re
 # Used Packages
 import nltk
 nltk.download("wordnet")
-from nltk.stem import WordNetLemmatizer
-import re
 
 def preprocessing(file):
     
+    print(file)
     # Reading files
-    with open(file, "r") as document:
+    with open(file, "r", encoding="utf_8") as document:
         document = document.read()
 
     # Remove prepositions, articles, etc
@@ -35,5 +36,8 @@ def preprocessing(file):
 
     # Join the sentences
     doc_par = " ".join(doc_par)
+
+    # Close file
+
     
     return doc_par

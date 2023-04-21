@@ -1,9 +1,7 @@
 from preprocess import preprocessing
-from nltk.util import ngrams
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
-import numpy as np
 import os
 import seaborn as sns
 from preprocess import preprocessing

@@ -1,0 +1,6 @@
+Abstract: Lexical and morphological ambiguities present a serious challenge in rule-based machine translation (RBMT). This chapter describes an approach to resolve morphologically ambiguous verb forms if
+a rule-based decision is not possible due to parsing or tagging errors. The rule-based core system has a
+set of rules to decide, based on context information, which verb form should be generated in the target
+language. However, if the parse tree is not correct, part of the context information might be missing and
+the rules cannot make a safe decision. In this case, we use a classifier to assign a verb form. We tested
+the classifier on a set of four texts, increasing the correct verb forms in the translation from 78.68

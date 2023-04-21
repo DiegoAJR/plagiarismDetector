@@ -1,0 +1,4 @@
+Another issue is a potential misunderstanding of what the purpose of Turnitin even is. While looking through papers submitted to the Libraries Turnitin Service, I have noticed that many students have uploaded personal documents such 
+as resumes, CVs, and cover letters. I am not sure what these students are trying to accomplish; it seems unlikely that someone conscientious enough to use the library Turnitin account would accidentally plagiarize while writing 
+personal documents. It also seems unlikely that Turnitins database would contain many similar documents that might have matching text. Additionally, these documents could be flagged with false positives due to the reasons listed above, in particular, commonly used phrases and proper 
+nouns.

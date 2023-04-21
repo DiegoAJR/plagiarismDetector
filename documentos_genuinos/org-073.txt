@@ -1,0 +1,2 @@
+The automatic plagiarism detection is based on different techniques of Information Retrieval and Extraction as well as Pattern Recognition and Information Theory. This task has received special attention in the last yearsdue to the 
+possibility of generating efficient mechanisms for the detection ofplagiarism cases. The production of this kind of resources could minimise the temptation to plagiarise.

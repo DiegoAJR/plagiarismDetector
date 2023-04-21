@@ -1,0 +1,3 @@
+Typologies are a precise and efficient way to draw the boundaries of a certain phenomenon, identify its different manifestations, and, in short, go into its characterization in depth. Also, typologies constitute the basis of many corpus
+annotation processes, which have their own effects on the typologies themselves: The annotation process tests the adequacy of the typology for the analysis of the data, and allows for the identification of new types and the revision of 
+the existing ones.

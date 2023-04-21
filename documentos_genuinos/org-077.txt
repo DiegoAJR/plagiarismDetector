@@ -1,0 +1,3 @@
+Paraphrase typologies have been addressed in different fields, including discourse analysis, linguistics, and computational linguistics, which has originated typologies that are very different in nature. Typologies coming from 
+discourse analysis classify paraphrases according to the reformulation mechanisms or communicative intention behind them, but without focusing on the linguistic nature of paraphrases themselves, which, in contrast, is our main focus of 
+interest.
