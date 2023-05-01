@@ -1,9 +1,9 @@
 # Used Packages
 from nltk.util import ngrams
 from sklearn.metrics import pairwise
-from sentence_transformers import SentenceTransformer, util
+import numpy as np
+from model import embed
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
 
 '''
 Divide the input paragraphs into unique n-grams as specified by the user parameter "n".
@@ -63,11 +63,27 @@ def preparation(processed_suspicious_text, processed_original_text):
     
     # paragraph_original = [processed_original_text]
     # paragraph_sus = [processed_suspicious_text]
-    # print("paragraphs:", processed_suspicious_text, processed_original_text) 
     # Create unigrams and trigrams
     # unigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 1)
     # trigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 3)
-    
+
+    # paragraphs = processed_suspicious_text + processed_original_text
+    results = []
+    embeddings_original = []
+    for i in range(len(processed_original_text)):
+        embeddings_original.append(embed([processed_original_text[i]]))
+    embeddings_sus = []
+    for i in range(len(processed_suspicious_text)):
+        embeddings_sus.append(embed([processed_suspicious_text[i]]))
+
+    # print("Texts: ", processed_original_text,"--other--" ,processed_suspicious_text)
+
+    for i in range(len(processed_original_text)):
+        for j in range(len(processed_suspicious_text)):
+            results.append(pairwise.cosine_similarity(embeddings_original[i],embeddings_sus[j]))
+            # print(pairwise.cosine_similarity(embeddings_original[i],embeddings_sus[j]),":", processed_original_text[i],"|",processed_suspicious_text[j])  
+
+    return np.mean(results), max(results)
 
     # # Create embeddings matrixes
     # embeddings_uni = create_embeddings(unigrams)
@@ -78,16 +94,8 @@ def preparation(processed_suspicious_text, processed_original_text):
     # build_embeddings(embeddings_tri, trigrams, paragraphs)
     
     # Embeddings
-    embeddings_original = model.encode(processed_original_text, convert_to_tensor=True)
-    embeddings_sus = model.encode(processed_suspicious_text, convert_to_tensor=True)
+    # embeddings_original = model.encode(processed_original_text, convert_to_tensor=True)
+    # embeddings_sus = model.encode(processed_suspicious_text, convert_to_tensor=True)
 
     # print(type(embeddings_original), embeddings_original.shape)
-
-
-    # Cosine similarity for n-grams
-    result = util.cos_sim(embeddings_original, embeddings_sus)
-    
-    print(result.shape)
-    
-    return result[0,0]
 
