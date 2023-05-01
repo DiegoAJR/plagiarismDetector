@@ -21,6 +21,7 @@ def preprocessing(file, test = False):
     else:
         document = file
 
+    # return document
     # Remove prepositions, articles, etc
     filtered_doc = remove_stopwords(document)
 

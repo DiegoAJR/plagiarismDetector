@@ -1,7 +1,9 @@
 # Used Packages
 from nltk.util import ngrams
 from sklearn.metrics import pairwise
-from difflib import SequenceMatcher
+from sentence_transformers import SentenceTransformer, util
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
 '''
 Divide the input paragraphs into unique n-grams as specified by the user parameter "n".
@@ -55,28 +57,37 @@ by creating unigrams and trigrams.
 Receives two pre-processed texts
 Retruns the result of applying the cosine difference to both sets of unigrams and trigrams
 '''
+
+
 def preparation(processed_suspicious_text, processed_original_text):
     
-    paragraphs = [processed_suspicious_text, processed_original_text]
-
+    # paragraph_original = [processed_original_text]
+    # paragraph_sus = [processed_suspicious_text]
+    # print("paragraphs:", processed_suspicious_text, processed_original_text) 
     # Create unigrams and trigrams
-    unigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 1)
-    trigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 3)
+    # unigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 1)
+    # trigrams = create_n_grams(processed_suspicious_text.split(" "), processed_original_text.split(" "), 3)
     
 
-    # Create embeddings matrixes
-    embeddings_uni = create_embeddings(unigrams)
-    embeddings_tri = create_embeddings(trigrams)
+    # # Create embeddings matrixes
+    # embeddings_uni = create_embeddings(unigrams)
+    # embeddings_tri = create_embeddings(trigrams)
 
-    # Fill out the embeddings matrix with the unique n-grams
-    build_embeddings(embeddings_uni, unigrams, paragraphs)
-    build_embeddings(embeddings_tri, trigrams, paragraphs)
-
+    # # Fill out the embeddings matrix with the unique n-grams
+    # build_embeddings(embeddings_uni, unigrams, paragraphs)
+    # build_embeddings(embeddings_tri, trigrams, paragraphs)
     
+    # Embeddings
+    embeddings_original = model.encode(processed_original_text, convert_to_tensor=True)
+    embeddings_sus = model.encode(processed_suspicious_text, convert_to_tensor=True)
+
+    # print(type(embeddings_original), embeddings_original.shape)
+
+
     # Cosine similarity for n-grams
-    unigram_result = pairwise.cosine_similarity(embeddings_uni)[0,1]
-    trigram_result = pairwise.cosine_similarity(embeddings_tri)[0,1]
+    result = util.cos_sim(embeddings_original, embeddings_sus)
     
-    return unigram_result, trigram_result
-
+    print(result.shape)
+    
+    return result[0,0]
 

@@ -1,0 +1,6 @@
+A Combination Prediction Model of Stock Composite Index Based on Artificial Intelligent Methods and Multi-Agent Simulation
+
+Predicting stock composite index is useful, which can raise the interest of both the investors and the corresponding researchers. This paper presented a new combination prediction model based on the technique of artificial intelligence and the principle of combination forecast. The principle of combination forecast, as a valid foundation of the new model, was strictly proved and carefully illustrated in this paper. Given the predicting rules, the new combination model was established by synthesizing three commonly used prediction models based on the principle of combination forecast. The comprehensive usage of qualitative forecast and quantitative forecast is also a feature of the new model. To valid the new model, comparison analysis and multi-agent simulation were both applied. Besides, the application of multi-agent simulation made the new model able to guide the investors' operations in a real stock market. According to the theoretical proof, the comparison analysis and the simulation experiment, the new combination prediction model tends to be a powerful and applicable tool in making the investment decisions.
+
+
+
