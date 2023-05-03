@@ -38,5 +38,3 @@ def preprocessing(file, test = False):
     
     # Return preprocessed file as a string
     return filtered_doc
-
-

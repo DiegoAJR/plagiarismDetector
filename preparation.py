@@ -25,10 +25,8 @@ def preparation(processed_suspicious_text, processed_original_text):
     for i in range(len(processed_original_text)):
         for j in range(len(processed_suspicious_text)):
             cosine_result = pairwise.cosine_similarity(embeddings_original[i],embeddings_sus[j])
-            if cosine_result[0][0] > 0.85:
+            if cosine_result[0][0] > 0.8:
                 suspicious_word_count_plagiarims += len(processed_suspicious_text[j].split(" "))
 
 
     return suspicious_word_count_plagiarims
-
-
