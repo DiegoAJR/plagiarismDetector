@@ -1,6 +1,5 @@
 # Used Packages
 from sklearn.metrics import pairwise
-import numpy as np
 from model import embed
 
 '''
@@ -12,8 +11,8 @@ Retruns the result of applying the cosine difference to both sets of unigrams an
 '''
 def preparation(processed_suspicious_text, processed_original_text):
     
-    results = []
     embeddings_original = []
+    suspicious_word_count_plagiarims = 0
 
     # Creation of embeddings using Universal Sentence Encoder
     for i in range(len(processed_original_text)):
@@ -25,8 +24,11 @@ def preparation(processed_suspicious_text, processed_original_text):
     # Cosine similarity calculation for each document
     for i in range(len(processed_original_text)):
         for j in range(len(processed_suspicious_text)):
-            results.append(pairwise.cosine_similarity(embeddings_original[i],embeddings_sus[j]))
+            cosine_result = pairwise.cosine_similarity(embeddings_original[i],embeddings_sus[j])
+            if cosine_result[0][0] > 0.85:
+                suspicious_word_count_plagiarims += len(processed_suspicious_text[j].split(" "))
 
-    return np.mean(results), max(results)
+
+    return suspicious_word_count_plagiarims
 
 
