@@ -9,24 +9,16 @@ by creating unigrams and trigrams.
 Receives two pre-processed texts
 Retruns the result of applying the cosine difference to both sets of unigrams and trigrams
 '''
-def preparation(processed_suspicious_text, processed_original_text):
+def preparation(suspicious_embedding, original_embeddings, suspicious_text):
     
-    embeddings_original = []
     suspicious_word_count_plagiarims = 0
 
-    # Creation of embeddings using Universal Sentence Encoder
-    for i in range(len(processed_original_text)):
-        embeddings_original.append(embed([processed_original_text[i]]))
-    embeddings_sus = []
-    for i in range(len(processed_suspicious_text)):
-        embeddings_sus.append(embed([processed_suspicious_text[i]]))
-
     # Cosine similarity calculation sentence by sentence
-    for i in range(len(processed_original_text)):
-        for j in range(len(processed_suspicious_text)):
-            cosine_result = pairwise.cosine_similarity(embeddings_original[i],embeddings_sus[j])
+    for i in range(len(original_embeddings)):
+        for j in range(len(suspicious_embedding)):
+            cosine_result = pairwise.cosine_similarity(original_embeddings[i],suspicious_embedding[j])
             if cosine_result[0][0] > 0.75:
-                suspicious_word_count_plagiarims += len(processed_suspicious_text[j].split(" "))* cosine_result[0][0]
+                suspicious_word_count_plagiarims += len(suspicious_text[j].split(" "))* cosine_result[0][0]
 
 
     return suspicious_word_count_plagiarims
