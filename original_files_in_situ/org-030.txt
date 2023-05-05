@@ -1,0 +1,7 @@
+Artificial intelligence (AI) is currently one of the mostly controversial matters of the world. This article discusses AI in terms of the medical ethics issues involved, both existing and potential.
+
+Once artificial intelligence is fully developed within electronic systems, it will afford many useful applications in many sectors ranging from banking, agriculture, medical procedures to military operations, especially by decreasing the involvement of humans in critically dangerous activities.
+
+Robots as well as computers themselves are embodiments of values inasmuch as they entail actions and choices, but their practical applications are modelled or programmed by the engineers building the systems. AI will need algorithmic procedures to ensure safety in the implementation of such systems. The AI algorithms written could naturally contain errors that may result in unforeseen consequences and unfair outcomes along economic and racial class lines.
+
+It is crucial that measures be taken to monitor technological developments ensuring preventative and precautionary safeguards are in place to safeguard the rights of those involved against direct or indirect coercion. While it is the responsibility of AI researchers to ensure that the future impact is more positive than negative, ethicists and philosophers need to be deeply involved in the development of such technologies from the beginning.
