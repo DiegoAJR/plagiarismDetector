@@ -1,5 +1,3 @@
-# from absl import logging
-# import tensorflow as tf
 import tensorflow_hub as hub
 
 # Import the Universal Sentence Encoder's TF Hub module

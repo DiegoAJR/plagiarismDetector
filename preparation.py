@@ -21,12 +21,12 @@ def preparation(processed_suspicious_text, processed_original_text):
     for i in range(len(processed_suspicious_text)):
         embeddings_sus.append(embed([processed_suspicious_text[i]]))
 
-    # Cosine similarity calculation for each document
+    # Cosine similarity calculation sentence by sentence
     for i in range(len(processed_original_text)):
         for j in range(len(processed_suspicious_text)):
             cosine_result = pairwise.cosine_similarity(embeddings_original[i],embeddings_sus[j])
-            if cosine_result[0][0] > 0.8:
-                suspicious_word_count_plagiarims += len(processed_suspicious_text[j].split(" "))
+            if cosine_result[0][0] > 0.75:
+                suspicious_word_count_plagiarims += len(processed_suspicious_text[j].split(" "))* cosine_result[0][0]
 
 
     return suspicious_word_count_plagiarims
